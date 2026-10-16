@@ -1,0 +1,133 @@
+{
+  "brand": "Lastro",
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "primitive": {
+    "color": {
+      "tinta": {
+        "100": { "$value": "#E8EBF2", "$type": "color" },
+        "500": { "$value": "#1F2A44", "$type": "color" },
+        "600": { "$value": "#141C30", "$type": "color" }
+      },
+      "carimbo": {
+        "100": { "$value": "#E0F2F1", "$type": "color" },
+        "500": { "$value": "#0E7C7B", "$type": "color" },
+        "600": { "$value": "#0A5C5B", "$type": "color" }
+      },
+      "lacre": {
+        "100": { "$value": "#FEF3C7", "$type": "color" },
+        "500": { "$value": "#B7791F", "$type": "color" },
+        "600": { "$value": "#92400E", "$type": "color" }
+      },
+      "neutral": {
+        "papel": { "$value": "#FBFAF7", "$type": "color" },
+        "branco": { "$value": "#FFFFFF", "$type": "color" },
+        "superficie": { "$value": "#F3F2EE", "$type": "color" },
+        "borda": { "$value": "#D9D7D0", "$type": "color" },
+        "texto-secundario": { "$value": "#5B6270", "$type": "color" },
+        "cinza-700": { "$value": "#374151", "$type": "color" }
+      },
+      "green": {
+        "100": { "$value": "#DCFCE7", "$type": "color" },
+        "600": { "$value": "#15803D", "$type": "color" },
+        "900": { "$value": "#14532D", "$type": "color" }
+      },
+      "amber": {
+        "600": { "$value": "#B45309", "$type": "color" },
+        "900": { "$value": "#78350F", "$type": "color" }
+      },
+      "red": {
+        "600": { "$value": "#B91C1C", "$type": "color" }
+      }
+    },
+    "font": {
+      "heading": { "$value": "'IBM Plex Serif', Georgia, 'Times New Roman', serif", "$type": "fontFamily" },
+      "body": { "$value": "'IBM Plex Sans', system-ui, -apple-system, sans-serif", "$type": "fontFamily" },
+      "mono": { "$value": "'IBM Plex Mono', 'JetBrains Mono', monospace", "$type": "fontFamily" }
+    },
+    "space": {
+      "xs": { "$value": "4px", "$type": "dimension" },
+      "sm": { "$value": "8px", "$type": "dimension" },
+      "md": { "$value": "16px", "$type": "dimension" },
+      "lg": { "$value": "24px", "$type": "dimension" },
+      "xl": { "$value": "32px", "$type": "dimension" },
+      "2xl": { "$value": "48px", "$type": "dimension" }
+    },
+    "radius": {
+      "chip": { "$value": "4px", "$type": "dimension" },
+      "button": { "$value": "6px", "$type": "dimension" },
+      "card": { "$value": "8px", "$type": "dimension" },
+      "modal": { "$value": "12px", "$type": "dimension" }
+    }
+  },
+  "semantic": {
+    "color": {
+      "primary": { "$value": "{primitive.color.tinta.500}", "$type": "color" },
+      "primary-hover": { "$value": "{primitive.color.tinta.600}", "$type": "color" },
+      "primary-light": { "$value": "{primitive.color.tinta.100}", "$type": "color" },
+      "secondary": { "$value": "{primitive.color.carimbo.500}", "$type": "color" },
+      "secondary-hover": { "$value": "{primitive.color.carimbo.600}", "$type": "color" },
+      "secondary-light": { "$value": "{primitive.color.carimbo.100}", "$type": "color" },
+      "accent": { "$value": "{primitive.color.lacre.500}", "$type": "color" },
+      "accent-text": { "$value": "{primitive.color.lacre.600}", "$type": "color" },
+      "accent-light": { "$value": "{primitive.color.lacre.100}", "$type": "color" },
+      "bg": { "$value": "{primitive.color.neutral.papel}", "$type": "color" },
+      "surface": { "$value": "{primitive.color.neutral.branco}", "$type": "color" },
+      "surface-muted": { "$value": "{primitive.color.neutral.superficie}", "$type": "color" },
+      "border": { "$value": "{primitive.color.neutral.borda}", "$type": "color" },
+      "text": { "$value": "{primitive.color.tinta.500}", "$type": "color" },
+      "text-muted": { "$value": "{primitive.color.neutral.texto-secundario}", "$type": "color" },
+      "link": { "$value": "{primitive.color.carimbo.500}", "$type": "color" },
+      "success": { "$value": "{primitive.color.green.600}", "$type": "color" },
+      "warning": { "$value": "{primitive.color.amber.600}", "$type": "color" },
+      "error": { "$value": "{primitive.color.red.600}", "$type": "color" },
+      "info": { "$value": "{primitive.color.carimbo.500}", "$type": "color" }
+    },
+    "confidence": {
+      "alta": {
+        "bg": { "$value": "{primitive.color.green.100}", "$type": "color" },
+        "text": { "$value": "{primitive.color.green.900}", "$type": "color" },
+        "border-style": { "$value": "solid", "$type": "string" }
+      },
+      "media": {
+        "bg": { "$value": "{primitive.color.lacre.100}", "$type": "color" },
+        "text": { "$value": "{primitive.color.amber.900}", "$type": "color" },
+        "border-style": { "$value": "solid", "$type": "string" }
+      },
+      "possivel": {
+        "bg": { "$value": "{primitive.color.neutral.superficie}", "$type": "color" },
+        "text": { "$value": "{primitive.color.neutral.cinza-700}", "$type": "color" },
+        "border-style": { "$value": "dashed", "$type": "string" }
+      }
+    }
+  },
+  "component": {
+    "button": {
+      "primary": {
+        "bg": { "$value": "{semantic.color.primary}", "$type": "color" },
+        "text": { "$value": "{primitive.color.neutral.branco}", "$type": "color" },
+        "radius": { "$value": "{primitive.radius.button}", "$type": "dimension" }
+      },
+      "secondary": {
+        "bg": { "$value": "transparent", "$type": "color" },
+        "text": { "$value": "{semantic.color.secondary}", "$type": "color" },
+        "border": { "$value": "{semantic.color.secondary}", "$type": "color" },
+        "bg-hover": { "$value": "#1F2A441A", "$type": "color" }
+      }
+    },
+    "source-chip": {
+      "bg": { "$value": "{semantic.color.secondary-light}", "$type": "color" },
+      "text": { "$value": "{semantic.color.secondary-hover}", "$type": "color" }
+    },
+    "status-chip": {
+      "bg": { "$value": "{semantic.color.surface-muted}", "$type": "color" },
+      "text": { "$value": "{semantic.color.text}", "$type": "color" },
+      "border": { "$value": "{semantic.color.border}", "$type": "color" }
+    },
+    "ficha": {
+      "bg": { "$value": "{semantic.color.surface}", "$type": "color" },
+      "border": { "$value": "{semantic.color.border}", "$type": "color" },
+      "radius": { "$value": "{primitive.radius.card}", "$type": "dimension" },
+      "padding": { "$value": "{primitive.space.lg}", "$type": "dimension" }
+    }
+  }
+}

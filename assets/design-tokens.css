@@ -1,0 +1,98 @@
+/* Lastro design tokens — gerado a partir de docs/brand-guidelines.md v1.0 */
+:root {
+  /* primitivos */
+  --tinta-100: #E8EBF2;
+  --tinta-500: #1F2A44;
+  --tinta-600: #141C30;
+  --carimbo-100: #E0F2F1;
+  --carimbo-500: #0E7C7B;
+  --carimbo-600: #0A5C5B;
+  --lacre-100: #FEF3C7;
+  --lacre-500: #B7791F;
+  --lacre-600: #92400E;
+  --papel: #FBFAF7;
+  --branco: #FFFFFF;
+  --superficie: #F3F2EE;
+  --borda: #D9D7D0;
+  --texto-secundario: #5B6270;
+  --cinza-700: #374151;
+
+  /* semânticos */
+  --color-primary: var(--tinta-500);
+  --color-primary-hover: var(--tinta-600);
+  --color-primary-light: var(--tinta-100);
+  --color-secondary: var(--carimbo-500);
+  --color-secondary-hover: var(--carimbo-600);
+  --color-secondary-light: var(--carimbo-100);
+  --color-accent: var(--lacre-500);
+  --color-accent-text: var(--lacre-600);
+  --color-accent-light: var(--lacre-100);
+  --color-bg: var(--papel);
+  --color-surface: var(--branco);
+  --color-surface-muted: var(--superficie);
+  --color-border: var(--borda);
+  --color-text: var(--tinta-500);
+  --color-text-muted: var(--texto-secundario);
+  --color-link: var(--carimbo-500);
+  --color-success: #15803D;
+  --color-warning: #B45309;
+  --color-error: #B91C1C; /* só erro de sistema, nunca qualifica candidato */
+  --color-info: var(--carimbo-500);
+
+  /* escala de confiança (dado, não UI) */
+  --confidence-alta-bg: #DCFCE7;
+  --confidence-alta-text: #14532D;
+  --confidence-alta-border: solid;
+  --confidence-media-bg: var(--lacre-100);
+  --confidence-media-text: #78350F;
+  --confidence-media-border: solid;
+  --confidence-possivel-bg: var(--superficie);
+  --confidence-possivel-text: var(--cinza-700);
+  --confidence-possivel-border: dashed;
+
+  /* tipografia */
+  --font-heading: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+
+  /* espaçamento */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* raios */
+  --radius-chip: 4px;
+  --radius-button: 6px;
+  --radius-card: 8px;
+  --radius-modal: 12px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1, h2 { font-family: var(--font-heading); font-weight: 600; }
+
+.mono, .cpf, .cnpj, .valor, .data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.badge-confianca {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-chip);
+  border: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge-confianca[data-nivel="alta"] { background: var(--confidence-alta-bg); color: var(--confidence-alta-text); border-style: var(--confidence-alta-border); }
+.badge-confianca[data-nivel="media"] { background: var(--confidence-media-bg); color: var(--confidence-media-text); border-style: var(--confidence-media-border); }
+.badge-confianca[data-nivel="possivel"] { background: var(--confidence-possivel-bg); color: var(--confidence-possivel-text); border-style: var(--confidence-possivel-border); }
