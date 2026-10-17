@@ -112,8 +112,9 @@ SELECT
   core.nulo(DS_DESPESA)                 AS descricao,
   core.nulo(NR_DOCUMENTO)               AS nr_documento,
   core.data_br(DT_GERACAO)              AS coletado_em
--- Sem union_by_name: com ele o DuckDB 1.5 falha ("Attempted to access index 51 within vector of size 15") só nesta tabela.
-FROM read_csv('$raw/prestacao_de_contas_eleitorais_candidatos_*/despesas_contratadas_candidatos_*_BRASIL.csv', delim=';', header=true, quote='"', encoding='CP1252', all_varchar=true);
+-- Uma linha de despesas de 2020 tem byte inválido em CP1252; ignore_errors as pula (o DuckDB 1.5 nem consegue
+-- reportá-las com projeção: "Attempted to access index 51 within vector of size 15").
+FROM read_csv('$raw/prestacao_de_contas_eleitorais_candidatos_*/despesas_contratadas_candidatos_*_BRASIL.csv', delim=';', header=true, quote='"', encoding='CP1252', all_varchar=true, union_by_name=true, ignore_errors=true);
 
 -- O TSE mascara o CPF em consulta_cand desde 2022, mas a prestação de contas traz o CPF completo.
 UPDATE core.candidatura c SET cpf = p.cpf
