@@ -10,4 +10,4 @@
 - [ ] PNCP: baixar/pncp.py + sql/pncp.sql
 - [x] PGFN, TCU, SICONFI, IBGE
 - [x] sql/cruzar.sql + tests/test_cruzar.py
-- [ ] status mostra tudo; commit + draft PR
+- [x] status mostra tudo (falta TSE despesas); commit + draft PR pendente

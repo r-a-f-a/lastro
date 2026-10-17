@@ -1,7 +1,7 @@
 -- Receita Federal: CSVs cp1252 com ';', aspas e sem cabeçalho; nomes de arquivo internos são opacos (K3241...EMPRECSV).
 -- $raw = data/raw/receita; a pasta do mês fica abaixo dele.
 CREATE OR REPLACE MACRO rf_csv(padrao, nomes) AS TABLE
-  SELECT * FROM read_csv(padrao, delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true, null_padding=true, names=nomes);
+  SELECT * FROM read_csv(padrao, delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true, names=nomes);
 
 CREATE OR REPLACE TABLE core.rf_natureza AS SELECT codigo, descricao FROM rf_csv('$raw/*/Naturezas/*', ['codigo', 'descricao']);
 CREATE OR REPLACE TABLE core.rf_qualificacao AS SELECT codigo, descricao FROM rf_csv('$raw/*/Qualificacoes/*', ['codigo', 'descricao']);
@@ -19,7 +19,7 @@ SELECT
   CASE e.porte WHEN '01' THEN 'NÃO INFORMADO' WHEN '02' THEN 'ME' WHEN '03' THEN 'EPP' WHEN '05' THEN 'DEMAIS' END AS porte,
   regexp_extract(e.filename, '/(\d{4}-\d{2})/', 1)            AS referencia,
   current_date                                                AS coletado_em
-FROM read_csv('$raw/*/Empresas?/*', delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true, null_padding=true, filename=true,
+FROM read_csv('$raw/*/Empresas?/*', delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true, filename=true,
               names=['cnpj_basico', 'razao_social', 'natureza_juridica', 'qualificacao_responsavel', 'capital_social', 'porte', 'ente_federativo']) e
 LEFT JOIN core.rf_natureza n ON n.codigo = e.natureza_juridica;
 
@@ -38,7 +38,7 @@ SELECT
   e.municipio                                                 AS cod_municipio_rf,
   m.descricao                                                 AS municipio,
   current_date                                                AS coletado_em
-FROM read_csv('$raw/*/Estabelecimentos?/*', delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true, null_padding=true,
+FROM read_csv('$raw/*/Estabelecimentos?/*', delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true,
               names=['cnpj_basico', 'cnpj_ordem', 'cnpj_dv', 'matriz_filial', 'nome_fantasia', 'situacao', 'data_situacao', 'motivo_situacao',
                      'cidade_exterior', 'pais', 'inicio_atividade', 'cnae_principal', 'cnae_secundaria', 'tipo_logradouro', 'logradouro', 'numero',
                      'complemento', 'bairro', 'cep', 'uf', 'municipio', 'ddd1', 'telefone1', 'ddd2', 'telefone2', 'ddd_fax', 'fax', 'email',
@@ -58,7 +58,7 @@ SELECT
   try_strptime(nullif(s.entrada, '0'), '%Y%m%d')::DATE        AS entrada_em,
   s.faixa_etaria,
   current_date                                                AS coletado_em
-FROM read_csv('$raw/*/Socios?/*', delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true, null_padding=true,
+FROM read_csv('$raw/*/Socios?/*', delim=';', header=false, quote='"', encoding='CP1252', all_varchar=true,
               names=['cnpj_basico', 'tipo', 'nome', 'cpf_cnpj', 'qualificacao', 'entrada', 'pais', 'representante', 'nome_representante',
                      'qualificacao_representante', 'faixa_etaria']) s
 LEFT JOIN core.rf_qualificacao q ON q.codigo = s.qualificacao;
