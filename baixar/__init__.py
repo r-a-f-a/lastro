@@ -30,7 +30,7 @@ def baixar(url, destino, headers=None, method="GET", json=None, auth=None):
             print(f"  {destino.relative_to(RAW)}  {destino.stat().st_size / 1e6:.1f} MB", flush=True)
             return extrair(destino)
         except (httpx.TransportError, httpx.HTTPStatusError) as e:
-            if isinstance(e, httpx.HTTPStatusError) and e.response.status_code not in (405, 429) and e.response.status_code < 500:  # 405 do Portal é transitório
+            if isinstance(e, httpx.HTTPStatusError) and e.response.status_code not in (405, 422, 429) and e.response.status_code < 500:  # 405 do Portal e 422 do PNCP são transitórios
                 raise
             if tentativa == 3:
                 raise
