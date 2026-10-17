@@ -29,10 +29,10 @@ Arquivo já baixado não é baixado de novo. Para refazer, apague o arquivo em `
 | Câmara | deputados, presença, votações, proposições, cota parlamentar | 2019 em diante | ~2 GB |
 | Senado | senadores, votações, CEAPS | legislaturas 56 e 57 | ~200 MB |
 | Portal da Transparência | CEIS, CNEP, CEPIM, CEAF, emendas parlamentares | coleta do dia; emendas desde 2019 | ~500 MB |
-| PNCP | contratos públicos | 2021 em diante, por API | horas de download |
+| PNCP | contratos públicos | 2021 em diante, por API paginada | horas de download |
 | PGFN | dívida ativa da União | 3 arquivos | ~2 GB |
 | TCU | responsáveis inabilitados, inidôneos, contas irregulares | lista atual | pequeno |
-| SICONFI | finanças municipais (DCA, RREO) | 2019 em diante | ~1 GB |
+| SICONFI | receitas orçamentárias anuais (DCA Anexo I-C) de cada município e estado | 2019 em diante, uma requisição por ente e ano | ~2 GB, horas |
 | IBGE | municípios, população Censo 2022 | atual | pequeno |
 
 URLs, formatos e encodings validados estão em [`docs/fontes-validacao.md`](docs/fontes-validacao.md). O desenho está em [`docs/superpowers/specs/2026-10-16-ingestao-dados-design.md`](docs/superpowers/specs/2026-10-16-ingestao-dados-design.md). O catálogo completo das fontes, incluindo as que ainda não entram, está no arquivo `Catálogo de Dados Públicos`.

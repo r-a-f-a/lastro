@@ -34,7 +34,9 @@ def baixar(url, destino, headers=None, method="GET", json=None, auth=None):
                 raise
             if tentativa == 3:
                 raise
-            print(f"  tentativa {tentativa} falhou ({e}); aguardando {espera}s", file=sys.stderr)
+            if isinstance(e, httpx.HTTPStatusError) and e.response.status_code == 429:
+                espera = 60 * tentativa  # PNCP limita por minuto
+            print(f"  tentativa {tentativa} falhou ({e}); aguardando {espera}s", file=sys.stderr, flush=True)
             time.sleep(espera)
 
 

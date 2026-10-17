@@ -1,4 +1,9 @@
 -- Senado: JSON das APIs e CSV UTF-8 do CEAPS. $raw = data/raw/senado.
+-- Entra nas tabelas criadas por camara.sql; apaga o que é do Senado antes para poder rodar de novo.
+DELETE FROM core.mandato WHERE casa = 'senado';
+DELETE FROM core.despesa_cota WHERE casa = 'senado';
+DELETE FROM core.votacao WHERE casa = 'senado';
+DELETE FROM core.voto WHERE casa = 'senado';
 INSERT INTO core.mandato
 SELECT
   'senado', p.IdentificacaoParlamentar.CodigoParlamentar::INT, p.IdentificacaoParlamentar.NomeParlamentar,

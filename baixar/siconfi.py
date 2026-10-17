@@ -1,6 +1,7 @@
-"""SICONFI: entes e DCA Anexo I-AB (balanço anual) por ente, 2019 em diante.
+"""SICONFI: entes e DCA Anexo I-C (receitas orçamentárias) por ente, 2019 em diante.
 A API só devolve o DCA por id_ente, então são ~5.600 entes x anos, uma requisição cada."""
 import json
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 
 from baixar import RAW, baixar
@@ -18,8 +19,7 @@ def main():
         if not pagina["hasMore"]:
             break
         offset += 5000
-    for ano in range(2019, date.today().year):
-        for e in entes:
-            if e["esfera"] in ("M", "E"):
-                baixar(f"{ORDS}/dca?an_exercicio={ano}&no_anexo=DCA-Anexo I-AB&id_ente={e['cod_ibge']}&limit=5000",
-                       RAW / "siconfi" / f"dca_{ano}" / f"{e['cod_ibge']}.json")
+    pedidos = [(ano, e["cod_ibge"]) for ano in range(2019, date.today().year) for e in entes if e["esfera"] in ("M", "E")]
+    with ThreadPoolExecutor(4) as pool:  # ~39 mil requisições; em série levaria o dia inteiro
+        list(pool.map(lambda p: baixar(f"{ORDS}/dca?an_exercicio={p[0]}&no_anexo=DCA-Anexo I-C&id_ente={p[1]}&limit=5000",
+                                       RAW / "siconfi" / f"dca_{p[0]}" / f"{p[1]}.json"), pedidos))

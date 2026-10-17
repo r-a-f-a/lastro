@@ -40,7 +40,9 @@ Cada `baixar/<fonte>.py` expõe `main()`: monta a lista de URLs do escopo e cham
 
 ## Modelo (schema `core`)
 
-pessoa, candidatura, bem_declarado, receita_campanha, despesa_campanha, filiacao, cassacao, empresa, estabelecimento, socio, mandato, presenca, votacao, voto, proposicao, autoria, despesa_cota, contrato, emenda, sancao, territorio, financas_municipio, vinculo.
+pessoa, candidatura, bem_declarado, receita_campanha, despesa_campanha, cassacao, votos_munzona, empresa, estabelecimento, socio, mandato, presenca, votacao, voto, proposicao, autoria, despesa_cota, contrato, emenda, emenda_favorecido, sancao, sancao_tcu, divida_ativa, territorio, financas_municipio, vinculo. Tabelas `rf_*` guardam os domínios da Receita (CNAE, natureza jurídica, qualificação de sócio, município).
+
+Filiação partidária ficou de fora: o TSE só publica o perfil agregado dos filiados, não a lista nominal.
 
 Colunas em snake_case, tipadas no SQL. Chaves derivadas: `cpf6` (6 dígitos centrais) e `nome_norm` (maiúsculo, sem acento, sem DA DE DO DAS DOS E). CPF completo só existe em `pessoa`; nunca sai dela em export.
 
@@ -56,7 +58,8 @@ Colunas em snake_case, tipadas no SQL. Chaves derivadas: `cpf6` (6 dígitos cent
 | pessoa_sancao_cpf | CPF completo (TCU) | alta |
 | pessoa_mandato_cpf | CPF completo | alta |
 | pessoa_socio | cpf6 + nome_norm | media |
-| pessoa_sancao_cpf6 | cpf6 + nome_norm (PGFN, CEAF) | media |
+| pessoa_sancao_cpf6 | cpf6 + nome_norm (CEAF) | media |
+| pessoa_divida_cpf6 | cpf6 + nome_norm (PGFN) | media |
 | pessoa_mandato_nome | nome_norm + UF + partido | possivel |
 | autor_emenda | nome_norm do autor | possivel |
 
