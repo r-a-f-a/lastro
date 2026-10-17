@@ -47,6 +47,8 @@ URLs, formatos e encodings validados estão em [`docs/fontes-validacao.md`](docs
 
 Nome sozinho nunca gera vínculo. CPF completo só existe na tabela `core.pessoa` e nunca sai dela.
 
+O TSE publica o CPF completo dos candidatos de 2018, 2020 e 2022 (na consulta de candidatos ou na prestação de contas), mas mascara todos os CPFs de 2024. Candidatos que só concorreram em 2024 ainda não entram em `core.pessoa` nem nos vínculos por CPF. A Câmara não publica CPF no cadastro de deputados; ele vem da cota parlamentar. O Senado não publica CPF, então senadores só se ligam a candidaturas por nome, UF e partido (grau possível).
+
 ## Licença
 
 Código: [AGPL-3.0](LICENSE). Dados derivados: CC BY 4.0. Os dados de origem seguem as licenças dos órgãos que os publicam.
