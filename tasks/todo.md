@@ -17,3 +17,8 @@
 - Ficha completa de um deputado federal de 2022 validada por consulta direta.
 - Pendente só o que depende de tempo: PNCP (API paginada) e SICONFI (uma requisição por ente e ano), ambos retomáveis.
 - Draft PR: https://github.com/r-a-f-a/lastro/pull/1
+
+## Revisão (2026-10-18)
+- [x] SICONFI completo: 5.596 entes × 7 anos; bug de paginação dos entes corrigido (537 faltavam)
+- [x] PNCP completo: 5,07 mi contratos 2021–out/2026, sem duplicatas; 422 transitório entra na retentativa
+- [x] `cruzar`: 5,7 mi vínculos; `pytest` 6 passed; PR #1 atualizado
